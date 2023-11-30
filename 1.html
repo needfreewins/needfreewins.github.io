@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Bio Link</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://i.pinimg.com/originals/0e/1f/83/0e1f8367d81e6f161d198a0b5011a62f.gif') center center fixed; /* Replace 'your-background.gif' with your actual file path */
+            background-size: cover;
+            color: rgb(0, 0, 0);
+        }
+
+        header {
+            text-align: center;
+            padding: 1em 0;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 2em auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.0); /* Semi-transparent white background */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #ffffff;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        #dynamicName {
+            font-size: 1.5em;
+        }
+
+        #dynamicImage {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 id="dynamicName"></h1>
+        <p></p>
+    </header>
+
+    <main>
+        <section style="text-align: center;">
+            <h2></h2>
+            <div>
+                <a href="https://twitter.com/ximbothy" target="_blank"><img src="https://imgs.search.brave.com/FHw3FjkWSCRx-hzQTJ-V4CMX0dUvtzEt-NBIJxtO0rE/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudGhlbm91bnBy/b2plY3QuY29tL3Bu/Zy8yNjYzNS0yMDAu/cG5n" alt="Twitter" width="50" height="50"></a>
+                <a href="https://www.twitch.tv/ximdesigns" target="_blank"><img src="https://imgs.search.brave.com/VOf3t0LDcI2w2E67slmTqdYt-w9rY4qc95APeI0KDEU/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/aWNvbm5pbmphLmNv/bS9maWxlcy80ODgv/OTUvNTk2L2JsYWNr/LXR3aXRjaC1pY29u/LnBuZw" alt="Twitch" width="50" height="50"></a>
+                <a href="https://discord.com/users/739036590998814771" target="_blank"><img src="https://imgs.search.brave.com/yQkqhj82JQrtRFImlDo7ovbTEF-8zM0Z-_liIzK6DQw/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9hc3Nl/dHMuc3RpY2twbmcu/Y29tL2ltYWdlcy82/MDAyZjkxZDUxYzJl/YzAwMDQ4YzZjNmQu/cG5n" alt="Discord" width="50" height="50"></a>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // JavaScript to change the name over time
+        function changeName() {
+            const names = ["e","ed", "edu", "educ", "educa", "educat", "educate", "educat", "educa", "educ", "edu", "ed", "e"]; // Add more names as needed
+            const nameElement = document.getElementById("dynamicName");
+
+            let index = 0;
+            setInterval(() => {
+                nameElement.textContent = names[index];
+                index = (index + 1) % names.length;
+            }, 500); // Change name every 5 seconds
+        }
+
+        // JavaScript to animate the window title
+        function animateWindowTitle() {
+            const titles = ["︻", "︻デ", "︻デ═", "︻デ═一", "︻デ═", "︻デ", "︻"]; // Add more titles as needed
+            let index = 0;
+
+            setInterval(() => {
+                document.title = titles[index];
+                index = (index + 1) % titles.length;
+            }, 500); // Change title every 3 seconds
+        }
+
+        // Call the functions when the page loads
+        window.onload = function() {
+            changeName();
+            animateWindowTitle();
+        };
+    </script>
+
+</body>
+</html>
