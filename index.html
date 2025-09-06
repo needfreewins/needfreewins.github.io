@@ -1,117 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>︻</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: url('https://cdn.discordapp.com/attachments/743367570907856977/1401711153574445087/main.gif?ex=689144bd&is=688ff33d&hm=54083ed002f5ca543e6b76f288320bd3a4d405e03ea3562f4265979d226e8725&') center center fixed; /* Replace 'your-background.gif' with your actual file path */
-            background-size: fill;
-            color: rgb(255, 255, 255);
-        }
+  <meta charset="UTF-8">
+  <title>Happy Birthday My Dear</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100vh;
+      font-family: sans-serif;
 
-        header {
-            text-align: center;
-            padding: 1em 0;
-        }
+      /* 🌌 Constant background */
+      background: url("https://imgs.search.brave.com/lEXV7OpBqtilhlDCS7eSBrObEJH8POIIukME6B_nVWA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHJlbWl1bS1waG90/by9iYWNrZ3JvdW5k/LWltYWdlLXBpbmst/cm9zZXNfMzkxMzEt/MTU1LmpwZz9zZW10/PWFpc19oeWJyaWQm/dz03NDAmcT04MA") no-repeat center center fixed;
+      background-size: cover;
+    }
 
-        main {
-            max-width: 800px;
-            margin: 2em auto;
-            padding: 20px;
-            background-color: rgb(255, 255, 255, 0); /* Semi-transparent white background */
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0);
-        }
+    /* Letter container (your handwritten images) */
+    .letter-container {
+      position: relative;
+      z-index: 2; /* below roses overlay */
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 90vw;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 20px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 0 20px rgba(255,0,0,0.5);
+      margin: auto;
+    }
 
-        section {
-            margin-bottom: 20px;
-        }
+    .letter-container img {
+  width: auto;
+  max-width: 600px;   /* adjust to taste */
+  max-height: 80vh;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+}
 
-        h2 {
-            color: #ffffff;
-        }
 
-        ul {
-            list-style: none;
-            padding: 0;
-        }
+    /* 🌹 Falling roses overlay */
+    .rose {
+      position: absolute;
+      top: -100px;
+      animation: fall linear infinite;
+      opacity: 0.9;
+      pointer-events: none; /* so roses don't block clicks */
+      z-index: 3; /* above everything */
+    }
 
-        li {
-            margin-bottom: 10px;
-        }
-
-        a {
-            color: #ffffff;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        #dynamicName {
-            font-size: 1.5em;
-        }
-
-        #dynamicImage {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-    </style>
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <h1 id="dynamicName"></h1>
-        <p></p>
-    </header>
+  <!-- 🎵 Background Music (Discord file link works here) -->
+  <audio id="bg-music" loop autoplay>
+    <source src="https://cdn.discordapp.com/attachments/1413749010430165003/1413985675954356426/The_Weeknd_-_Coming_Down_Lyrics.mp3?ex=68bdec47&is=68bc9ac7&hm=c2ac3686a04d7bf83f005ea90b22fa0341ce0a6836023e6add90dc0e34fed117&" type="audio/mpeg">
+  </audio>
 
-    <main>
-        <section style="text-align: center;">
-            <h2></h2>
-            <div>
-                <a href="https://twitter.com/ximbothy" target="_blank"><img src="https://imgs.search.brave.com/cPu2r59pQwQ1a8CmJropQYxo8-T4dxv0COrpY5iOvT8/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/aWNvbnNkYi5jb20v/aWNvbnMvcHJldmll/dy93aGl0ZS90d2l0/dGVyLXh4bC5wbmc" alt="Twitter" width="50" height="50"></a>
-                <a href="https://www.twitch.tv/ximdesigns" target="_blank"><img src="https://imgs.search.brave.com/eTEXS9f0ZRdA1uo0aCTQaSr7QUzOjrBFsf0APdLJe8Y/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/ZWRpZ2l0YWxhZ2Vu/Y3kuY29tLmF1L3dw/LWNvbnRlbnQvdXBs/b2Fkcy9Ud2l0Y2gt/aWNvbi13aGl0ZS5w/bmc" alt="Twitch" width="50" height="50"></a>
-                <a href="https://discord.com/users/739036590998814771" target="_blank"><img src="https://imgs.search.brave.com/trs56Jy1_490_6acbRkFBDAiDDl9Kq9S87kdDZ74-z0/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pbXAw/LnMzLmFtYXpvbmF3/cy5jb20vd3AtY29u/dGVudC91cGxvYWRz/LzIwMTkvMDUvMjEx/MzUzMzQvZGlzY29y/ZC1sb2dvLXdoaXRl/LnBuZw" alt="Discord" width="50" height="50"></a>
-            </div>
-        </section>
-    </main>
+  <script>
+    const audio = document.getElementById("bg-music");
+    audio.volume = 0.02;
 
-    <script>
-        // JavaScript to change the name over time
-        function changeName() {
-            const names = ["e","ed", "edu", "educ", "educa", "educat", "educate", "educat", "educa", "educ", "edu", "ed", "e"]; // Add more names as needed
-            const nameElement = document.getElementById("dynamicName");
+    audio.play().catch(() => {
+      document.addEventListener("click", () => {
+        audio.play();
+      }, { once: true });
+    });
+  </script>
 
-            let index = 0;
-            setInterval(() => {
-                nameElement.textContent = names[index];
-                index = (index + 1) % names.length;
-            }, 300); // Change name every 5 seconds
-        }
+  <!-- 📜 Letter Images -->
+  <div class="letter-container">
+    <img src="https://media.discordapp.net/attachments/1413749010430165003/1413983374175113287/IMG_5813.jpg?ex=68bdea22&is=68bc98a2&hm=081a51505462d7f64ad1810b7618862685f970d6015c89b0acd162888cf66cd0&=&format=webp&width=721&height=961" alt="Letter Part 1">
+    <img src="https://media.discordapp.net/attachments/1413749010430165003/1413983373034000414/IMG_5814.jpg?ex=68bdea22&is=68bc98a2&hm=ba5a447d7727f8ac43ba6094c1889753a5227369ce18b0a54d9abb13f774cbd5&=&format=webp&width=721&height=961" alt="Letter Part 2">
+    <img src="https://media.discordapp.net/attachments/1413749010430165003/1413983372547723384/IMG_5815.jpg?ex=68bdea22&is=68bc98a2&hm=0f36f5dfa9e8db298ddc6bfeacbce935e0d912dfb7bf021d01d0a9181575ac5f&=&format=webp&width=721&height=961" alt="Letter Part 3">
+    <img src="https://cdn.discordapp.com/attachments/1413749010430165003/1413988269477072906/Untitled-1.png?ex=68bdeeb2&is=68bc9d32&hm=c500496f80736ab38a29f887e5d9ad017f766135d24a51780697f945cc4032bb&" alt="Letter Part 4">
+  </div>
 
-        // JavaScript to animate the window title
-        function animateWindowTitle() {
-            const titles = ["︻", "︻デ", "︻デ═", "︻デ═一", "︻デ═", "︻デ", "︻"]; // Add more titles as needed
-            let index = 0;
+  <!-- 🌹 Falling Roses Script -->
+  <script>
+    function createRose() {
+      const rose = document.createElement("img");
+      rose.classList.add("rose");
+      rose.src = "https://imgs.search.brave.com/T6Y077SEOr8ZNx8pWjOMoGiJAmrtTq3gDIlZFGc-M3w/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/ZnJlZXBuZ2xvZ29z/LmNvbS91cGxvYWRz/L3Jvc2UtcG5nL3Jl/ZC1yb3NlLXBuZy1p/bWFnZS10cmFuc3Bh/cmVudC0zMi5wbmc"; // transparent rose PNG
 
-            setInterval(() => {
-                document.title = titles[index];
-                index = (index + 1) % titles.length;
-            }, 500); // Change title every 3 seconds
-        }
+      // Random horizontal position and speed
+      rose.style.left = Math.random() * 100 + "vw";
+      rose.style.animationDuration = (5 + Math.random() * 5) + "s";
+      rose.style.width = (20 + Math.random() * 40) + "px";
 
-        // Call the functions when the page loads
-        window.onload = function() {
-            changeName();
-            animateWindowTitle();
-        };
-    </script>
+      document.body.appendChild(rose);
 
+      setTimeout(() => {
+        rose.remove();
+      }, 10000);
+    }
+
+    // Spawn new rose every 900ms
+    setInterval(createRose, 900);
+  </script>
 </body>
 </html>
