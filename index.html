@@ -10,17 +10,55 @@
       overflow: hidden;
       height: 100vh;
       font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
       /* 🌌 Constant background */
       background: url("https://imgs.search.brave.com/lEXV7OpBqtilhlDCS7eSBrObEJH8POIIukME6B_nVWA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHJlbWl1bS1waG90/by9iYWNrZ3JvdW5k/LWltYWdlLXBpbmst/cm9zZXNfMzkxMzEt/MTU1LmpwZz9zZW10/PWFpc19oeWJyaWQm/dz03NDAmcT04MA") no-repeat center center fixed;
       background-size: cover;
     }
 
-    /* Letter container (your handwritten images) */
+    /* Envelope wrapper */
+    .envelope-wrapper {
+      position: relative;
+      width: 300px;
+      height: 200px;
+      perspective: 1000px;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .envelope {
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 1.2s ease-in-out;
+      transform-origin: bottom center; /* flip like flap */
+    }
+
+    .envelope.open {
+      transform: rotateX(180deg);
+    }
+
+    .envelope img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+    }
+
+    .envelope .back {
+      transform: rotateX(180deg);
+    }
+
+    /* Letter container */
     .letter-container {
       position: relative;
-      z-index: 2; /* below roses overlay */
-      display: flex;
+      z-index: 2;
+      display: none;
       flex-direction: column;
       gap: 20px;
       max-width: 90vw;
@@ -29,19 +67,25 @@
       padding: 20px;
       border-radius: 20px;
       background: rgba(255, 255, 255, 0.05);
-      box-shadow: 0 0 20px rgba(255,0,0,0.5);
-      margin: auto;
+      scroll-behavior: smooth;
+      animation: glow 3s ease-in-out infinite alternate;
     }
 
     .letter-container img {
-  width: auto;
-  max-width: 600px;   /* adjust to taste */
-  max-height: 80vh;
-  margin: 0 auto;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.6);
-}
+      width: auto;
+      max-width: 600px;
+      max-height: 80vh;
+      margin: 0 auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+    }
 
+    @media (max-width: 700px) {
+      .letter-container img {
+        max-width: 90vw;
+        max-height: 70vh;
+      }
+    }
 
     /* 🌹 Falling roses overlay */
     .rose {
@@ -49,54 +93,94 @@
       top: -100px;
       animation: fall linear infinite;
       opacity: 0.9;
-      pointer-events: none; /* so roses don't block clicks */
-      z-index: 3; /* above everything */
+      pointer-events: none;
+      z-index: 3;
     }
 
     @keyframes fall {
       to {
-        transform: translateY(110vh) rotate(360deg);
+        transform: translateY(110vh) translateX(30px) rotate(720deg);
+      }
+    }
+
+    /* ✨ Glow effect for letter */
+    @keyframes glow {
+      from {
+        box-shadow: 0 0 20px rgba(255,0,0,0.5);
+      }
+      to {
+        box-shadow: 0 0 40px rgba(255,0,0,0.9);
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- 🎵 Background Music (Discord file link works here) -->
-  <audio id="bg-music" loop autoplay>
-    <source src="https://cdn.discordapp.com/attachments/1413749010430165003/1413985675954356426/The_Weeknd_-_Coming_Down_Lyrics.mp3?ex=68bdec47&is=68bc9ac7&hm=c2ac3686a04d7bf83f005ea90b22fa0341ce0a6836023e6add90dc0e34fed117&" type="audio/mpeg">
+  <!-- 🎵 Background Music -->
+  <audio id="bg-music" loop>
+    <source src="https://cdn.discordapp.com/attachments/1413749010430165003/1413985675954356426/The_Weeknd_-_Coming_Down_Lyrics.mp3?ex=68bfe687&is=68be9507&hm=2925bf7fc42c6f575098c38f4c49c69b09684ddaac11c738022cc24122ed3e8e&" type="audio/mpeg">
   </audio>
+
+  <!-- 💌 Envelope -->
+  <div class="envelope-wrapper" id="envelope-wrapper">
+    <div class="envelope" id="envelope">
+      <img src="https://media.discordapp.net/attachments/1413749010430165003/1414664836352315525/front_envelope.png?ex=68c064cc&is=68bf134c&hm=aa1261624e36c009c785bb2c54518601f9c3a8c24530abec8942a58b28a25a64&=&format=webp&quality=lossless&width=1818&height=789" alt="Envelope Front" class="front">
+      <img src="https://media.discordapp.net/attachments/1413749010430165003/1414664834623996034/back_closed.png?ex=68c064cb&is=68bf134b&hm=aa9f3136cd3a52f0ee595a6d6f571cb7e20205b8bf5cf4808e4ce4602e1cccd8&=&format=webp&quality=lossless&width=520&height=260" alt="Envelope Back" class="back">
+    </div>
+  </div>
+
+  <!-- 📜 Letter Images -->
+  <div class="letter-container" id="letter">
+    <img src="https://cdn.discordapp.com/attachments/1413749010430165003/1414666245969809438/letter_1.png?ex=68c0661c&is=68bf149c&hm=0af9ec422b814200f198995b0a9d05edcb1db0890e3b16124161fedd9628a965&" alt="Letter Part 1">
+  </div>
 
   <script>
     const audio = document.getElementById("bg-music");
-    audio.volume = 0.02;
+    audio.volume = 0.0; // start muted
 
-    audio.play().catch(() => {
-      document.addEventListener("click", () => {
-        audio.play();
-      }, { once: true });
+    const envelopeWrapper = document.getElementById("envelope-wrapper");
+    const envelope = document.getElementById("envelope");
+    const letter = document.getElementById("letter");
+
+    // Smooth fade in for music
+    function fadeInAudio(audio, duration = 3000, maxVolume = 0.02) {
+      audio.volume = 0;
+      audio.play().catch(() => {});
+      let step = maxVolume / (duration / 100);
+      let fade = setInterval(() => {
+        if (audio.volume < maxVolume) {
+          audio.volume = Math.min(audio.volume + step, maxVolume);
+        } else {
+          clearInterval(fade);
+        }
+      }, 100);
+    }
+
+    envelopeWrapper.addEventListener("click", () => {
+      envelope.classList.add("open");
+
+      setTimeout(() => {
+        envelopeWrapper.style.display = "none";
+        letter.style.display = "flex";
+      }, 1200); // wait for animation
+
+      fadeInAudio(audio, 4000); // start music fade in
     });
-  </script>
 
-  <!-- 📜 Letter Images -->
-  <div class="letter-container">
-    <img src="https://media.discordapp.net/attachments/1413749010430165003/1413983374175113287/IMG_5813.jpg?ex=68bdea22&is=68bc98a2&hm=081a51505462d7f64ad1810b7618862685f970d6015c89b0acd162888cf66cd0&=&format=webp&width=721&height=961" alt="Letter Part 1">
-    <img src="https://media.discordapp.net/attachments/1413749010430165003/1413983373034000414/IMG_5814.jpg?ex=68bdea22&is=68bc98a2&hm=ba5a447d7727f8ac43ba6094c1889753a5227369ce18b0a54d9abb13f774cbd5&=&format=webp&width=721&height=961" alt="Letter Part 2">
-    <img src="https://media.discordapp.net/attachments/1413749010430165003/1413983372547723384/IMG_5815.jpg?ex=68bdea22&is=68bc98a2&hm=0f36f5dfa9e8db298ddc6bfeacbce935e0d912dfb7bf021d01d0a9181575ac5f&=&format=webp&width=721&height=961" alt="Letter Part 3">
-    <img src="https://cdn.discordapp.com/attachments/1413749010430165003/1413988269477072906/Untitled-1.png?ex=68bdeeb2&is=68bc9d32&hm=c500496f80736ab38a29f887e5d9ad017f766135d24a51780697f945cc4032bb&" alt="Letter Part 4">
-  </div>
+    // 🌹 Falling roses
+    const roseImages = [
+      "https://imgs.search.brave.com/T6Y077SEOr8ZNx8pWjOMoGiJAmrtTq3gDIlZFGc-M3w/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/ZnJlZXBuZ2xvZ29z/LmNvbS91cGxvYWRz/L3Jvc2UtcG5nL3Jl/ZC1yb3NlLXBuZy1p/bWFnZS10cmFuc3Bh/cmVudC0zMi5wbmc"
+    ];
 
-  <!-- 🌹 Falling Roses Script -->
-  <script>
     function createRose() {
       const rose = document.createElement("img");
       rose.classList.add("rose");
-      rose.src = "https://imgs.search.brave.com/T6Y077SEOr8ZNx8pWjOMoGiJAmrtTq3gDIlZFGc-M3w/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/ZnJlZXBuZ2xvZ29z/LmNvbS91cGxvYWRz/L3Jvc2UtcG5nL3Jl/ZC1yb3NlLXBuZy1p/bWFnZS10cmFuc3Bh/cmVudC0zMi5wbmc"; // transparent rose PNG
+      rose.src = roseImages[Math.floor(Math.random() * roseImages.length)];
 
-      // Random horizontal position and speed
       rose.style.left = Math.random() * 100 + "vw";
       rose.style.animationDuration = (5 + Math.random() * 5) + "s";
       rose.style.width = (20 + Math.random() * 40) + "px";
+      rose.style.transform = `rotate(${Math.random() * 360}deg)`;
 
       document.body.appendChild(rose);
 
@@ -105,7 +189,6 @@
       }, 10000);
     }
 
-    // Spawn new rose every 900ms
     setInterval(createRose, 900);
   </script>
 </body>
