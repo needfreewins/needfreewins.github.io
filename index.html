@@ -1,195 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Happy Birthday My Dear</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      height: 100vh;
-      font-family: sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>︻</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://cdn.discordapp.com/attachments/743367570907856977/1401711153574445087/main.gif?ex=689144bd&is=688ff33d&hm=54083ed002f5ca543e6b76f288320bd3a4d405e03ea3562f4265979d226e8725&') center center fixed; /* Replace 'your-background.gif' with your actual file path */
+            background-size: fill;
+            color: rgb(255, 255, 255);
+        }
 
-      /* 🌌 Constant background */
-      background: url("https://imgs.search.brave.com/lEXV7OpBqtilhlDCS7eSBrObEJH8POIIukME6B_nVWA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHJlbWl1bS1waG90/by9iYWNrZ3JvdW5k/LWltYWdlLXBpbmst/cm9zZXNfMzkxMzEt/MTU1LmpwZz9zZW10/PWFpc19oeWJyaWQm/dz03NDAmcT04MA") no-repeat center center fixed;
-      background-size: cover;
-    }
+        header {
+            text-align: center;
+            padding: 1em 0;
+        }
 
-    /* Envelope wrapper */
-    .envelope-wrapper {
-      position: relative;
-      width: 300px;
-      height: 200px;
-      perspective: 1000px;
-      cursor: pointer;
-      z-index: 10;
-    }
+        main {
+            max-width: 800px;
+            margin: 2em auto;
+            padding: 20px;
+            background-color: rgb(255, 255, 255, 0); /* Semi-transparent white background */
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0);
+        }
 
-    .envelope {
-      width: 100%;
-      height: 100%;
-      transform-style: preserve-3d;
-      transition: transform 1.2s ease-in-out;
-      transform-origin: bottom center; /* flip like flap */
-    }
+        section {
+            margin-bottom: 20px;
+        }
 
-    .envelope.open {
-      transform: rotateX(180deg);
-    }
+        h2 {
+            color: #ffffff;
+        }
 
-    .envelope img {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.6);
-    }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
 
-    .envelope .back {
-      transform: rotateX(180deg);
-    }
+        li {
+            margin-bottom: 10px;
+        }
 
-    /* Letter container */
-    .letter-container {
-      position: relative;
-      z-index: 2;
-      display: none;
-      flex-direction: column;
-      gap: 20px;
-      max-width: 90vw;
-      max-height: 90vh;
-      overflow-y: auto;
-      padding: 20px;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.05);
-      scroll-behavior: smooth;
-      animation: glow 3s ease-in-out infinite alternate;
-    }
+        a {
+            color: #ffffff;
+            text-decoration: none;
+        }
 
-    .letter-container img {
-      width: auto;
-      max-width: 600px;
-      max-height: 80vh;
-      margin: 0 auto;
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.6);
-    }
+        a:hover {
+            text-decoration: underline;
+        }
 
-    @media (max-width: 700px) {
-      .letter-container img {
-        max-width: 90vw;
-        max-height: 70vh;
-      }
-    }
+        #dynamicName {
+            font-size: 1.5em;
+        }
 
-    /* 🌹 Falling roses overlay */
-    .rose {
-      position: absolute;
-      top: -100px;
-      animation: fall linear infinite;
-      opacity: 0.9;
-      pointer-events: none;
-      z-index: 3;
-    }
-
-    @keyframes fall {
-      to {
-        transform: translateY(110vh) translateX(30px) rotate(720deg);
-      }
-    }
-
-    /* ✨ Glow effect for letter */
-    @keyframes glow {
-      from {
-        box-shadow: 0 0 20px rgba(255,0,0,0.5);
-      }
-      to {
-        box-shadow: 0 0 40px rgba(255,0,0,0.9);
-      }
-    }
-  </style>
+        #dynamicImage {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+    </style>
 </head>
 <body>
 
-  <!-- 🎵 Background Music -->
-  <audio id="bg-music" loop>
-    <source src="https://cdn.discordapp.com/attachments/1413749010430165003/1413985675954356426/The_Weeknd_-_Coming_Down_Lyrics.mp3?ex=68bfe687&is=68be9507&hm=2925bf7fc42c6f575098c38f4c49c69b09684ddaac11c738022cc24122ed3e8e&" type="audio/mpeg">
-  </audio>
+    <header>
+        <h1 id="dynamicName"></h1>
+        <p></p>
+    </header>
 
-  <!-- 💌 Envelope -->
-  <div class="envelope-wrapper" id="envelope-wrapper">
-    <div class="envelope" id="envelope">
-      <img src="https://media.discordapp.net/attachments/1413749010430165003/1414664836352315525/front_envelope.png?ex=68c064cc&is=68bf134c&hm=aa1261624e36c009c785bb2c54518601f9c3a8c24530abec8942a58b28a25a64&=&format=webp&quality=lossless&width=1818&height=789" alt="Envelope Front" class="front">
-      <img src="https://media.discordapp.net/attachments/1413749010430165003/1414664835089694862/back_open.png?ex=68c064cb&is=68bf134b&hm=111844a3c3e91086b909a7ae675bb3ab6b79ec7de64f490a11aefb09d2f93a6e&=&format=webp&quality=lossless&width=523&height=389" alt="Envelope Back" class="back">
-    </div>
-  </div>
+    <main>
+        <section style="text-align: center;">
+            <h2></h2>
+            <div>
+                <a href="https://twitter.com/ximbothy" target="_blank"><img src="https://imgs.search.brave.com/cPu2r59pQwQ1a8CmJropQYxo8-T4dxv0COrpY5iOvT8/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/aWNvbnNkYi5jb20v/aWNvbnMvcHJldmll/dy93aGl0ZS90d2l0/dGVyLXh4bC5wbmc" alt="Twitter" width="50" height="50"></a>
+                <a href="https://www.twitch.tv/ximdesigns" target="_blank"><img src="https://imgs.search.brave.com/eTEXS9f0ZRdA1uo0aCTQaSr7QUzOjrBFsf0APdLJe8Y/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/ZWRpZ2l0YWxhZ2Vu/Y3kuY29tLmF1L3dw/LWNvbnRlbnQvdXBs/b2Fkcy9Ud2l0Y2gt/aWNvbi13aGl0ZS5w/bmc" alt="Twitch" width="50" height="50"></a>
+                <a href="https://discord.com/users/739036590998814771" target="_blank"><img src="https://imgs.search.brave.com/trs56Jy1_490_6acbRkFBDAiDDl9Kq9S87kdDZ74-z0/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pbXAw/LnMzLmFtYXpvbmF3/cy5jb20vd3AtY29u/dGVudC91cGxvYWRz/LzIwMTkvMDUvMjEx/MzUzMzQvZGlzY29y/ZC1sb2dvLXdoaXRl/LnBuZw" alt="Discord" width="50" height="50"></a>
+            </div>
+        </section>
+    </main>
 
-  <!-- 📜 Letter Images -->
-  <div class="letter-container" id="letter">
-    <img src="https://media.discordapp.net/attachments/1413749010430165003/1414666245969809438/letter_1.png?ex=68c0661c&is=68bf149c&hm=0af9ec422b814200f198995b0a9d05edcb1db0890e3b16124161fedd9628a965&=&format=webp&quality=lossless&width=797&height=1029" alt="Letter Part 1">
-  </div>
+    <script>
+        // JavaScript to change the name over time
+        function changeName() {
+            const names = ["e","ed", "edu", "educ", "educa", "educat", "educate", "educat", "educa", "educ", "edu", "ed", "e"]; // Add more names as needed
+            const nameElement = document.getElementById("dynamicName");
 
-  <script>
-    const audio = document.getElementById("bg-music");
-    audio.volume = 0.0; // start muted
-
-    const envelopeWrapper = document.getElementById("envelope-wrapper");
-    const envelope = document.getElementById("envelope");
-    const letter = document.getElementById("letter");
-
-    // Smooth fade in for music
-    function fadeInAudio(audio, duration = 3000, maxVolume = 0.02) {
-      audio.volume = 0;
-      audio.play().catch(() => {});
-      let step = maxVolume / (duration / 100);
-      let fade = setInterval(() => {
-        if (audio.volume < maxVolume) {
-          audio.volume = Math.min(audio.volume + step, maxVolume);
-        } else {
-          clearInterval(fade);
+            let index = 0;
+            setInterval(() => {
+                nameElement.textContent = names[index];
+                index = (index + 1) % names.length;
+            }, 300); // Change name every 5 seconds
         }
-      }, 100);
-    }
 
-    envelopeWrapper.addEventListener("click", () => {
-      envelope.classList.add("open");
+        // JavaScript to animate the window title
+        function animateWindowTitle() {
+            const titles = ["︻", "︻デ", "︻デ═", "︻デ═一", "︻デ═", "︻デ", "︻"]; // Add more titles as needed
+            let index = 0;
 
-      setTimeout(() => {
-        envelopeWrapper.style.display = "none";
-        letter.style.display = "flex";
-      }, 1200); // wait for animation
+            setInterval(() => {
+                document.title = titles[index];
+                index = (index + 1) % titles.length;
+            }, 500); // Change title every 3 seconds
+        }
 
-      fadeInAudio(audio, 4000); // start music fade in
-    });
+        // Call the functions when the page loads
+        window.onload = function() {
+            changeName();
+            animateWindowTitle();
+        };
+    </script>
 
-    // 🌹 Falling roses
-    const roseImages = [
-      "https://imgs.search.brave.com/T6Y077SEOr8ZNx8pWjOMoGiJAmrtTq3gDIlZFGc-M3w/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/ZnJlZXBuZ2xvZ29z/LmNvbS91cGxvYWRz/L3Jvc2UtcG5nL3Jl/ZC1yb3NlLXBuZy1p/bWFnZS10cmFuc3Bh/cmVudC0zMi5wbmc"
-    ];
-
-    function createRose() {
-      const rose = document.createElement("img");
-      rose.classList.add("rose");
-      rose.src = roseImages[Math.floor(Math.random() * roseImages.length)];
-
-      rose.style.left = Math.random() * 100 + "vw";
-      rose.style.animationDuration = (5 + Math.random() * 5) + "s";
-      rose.style.width = (20 + Math.random() * 40) + "px";
-      rose.style.transform = `rotate(${Math.random() * 360}deg)`;
-
-      document.body.appendChild(rose);
-
-      setTimeout(() => {
-        rose.remove();
-      }, 10000);
-    }
-
-    setInterval(createRose, 900);
-  </script>
 </body>
 </html>
